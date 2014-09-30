@@ -78,8 +78,6 @@ int main(int argc, char **argv)
 	icmp->code = 0;
   	icmp->un.echo.sequence = rand();
   	icmp->un.echo.id = rand();
-	icmp->checksum = 0;
-	icmp->checksum = checksum((unsigned short *)icmp, sizeof(struct icmphdr) + payload_size);
 	
 	struct sockaddr_in servaddr;
 	servaddr.sin_family = AF_INET;
@@ -92,6 +90,8 @@ int main(int argc, char **argv)
 	 * How can we do this better? Copying the payload in every layer of the network hierarchy may not be the best way!
          */	
 	memcpy(packet + sizeof(struct iphdr) + sizeof(struct icmphdr), payload, payload_size);
+	icmp->checksum = 0;
+	icmp->checksum = checksum((unsigned short *)icmp, sizeof(struct icmphdr) + payload_size);
 
 	puts("sending ICMP packet...");
 		
