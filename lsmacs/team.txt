@@ -1,0 +1,8 @@
+
+Project: lsmacs
+---------------------------
+George Samy			22-4673
+Ali Moussa			22-1492
+Mostafa El-Beheiry	22-1462
+Youssed Sayed		22-1679
+---------------------------
